@@ -1,0 +1,1 @@
+This project analyzes the Toyota car dataset to understand pricing patterns and key factors influencing car prices. The study includes data quality checks, descriptive statistics, and exploratory data analysis (EDA) using visualizations to uncover trends and relationships within the data.
