@@ -191,5 +191,52 @@ try:
 except Exception as e:
     print("\nCould not compute feature importances:", e)
 
+# Building tree out of data
+from sklearn.tree import DecisionTreeRegressor
+from sklearn. pipeline import Pipeline
+from sklearn.ensemble import RandomForestRegressor
+tree_model = Pipeline (steps= [
+    ("preprocess", preprocess),
+    ("model", DecisionTreeRegressor(
+       max_depth=8,
+       random_state=42
+    ))
+    
+])
+
+pred_tree_model = evaluate("Decision Tree", tree_model, X_train,X_test, y_train, y_test)
+
+rf= Pipeline(steps=[
+    ("preprocess", preprocess),
+    ("model",RandomForestRegressor(
+        n_estimators=300,
+        random_state = 42,
+         n_jobs = -1
+    ))
+])
+pred_rf = evaluate("randomForestRegressor", rf, X_train, X_test, y_train, y_test)
+
+
+# Plot tree using matplotlib
+import matplotlib.pyplot as plt
+from sklearn.tree import plot_tree
+
+dt = tree_model.named_steps["model"]
+pre = tree_model.named_steps["preprocess"]
+feature_names = pre.get_feature_names_out()
+
+plt.figure(figsize=(20, 10))
+plot_tree(
+    dt,
+    feature_names=feature_names,
+    filled=True,
+    max_depth=3,
+    fontsize=8
+)
+plt.tight_layout()
+plt.savefig("decision_tree_matplotlib.png", dpi=200)
+plt.show()
+
+
 
 
