@@ -172,7 +172,6 @@ plt.show()
 # This is useful to explain "what factors affect price most".
 # Need to extract the one-hot feature names after preprocessing.
 
-try:
     # Fit RF if not already fit (safe)
     rf.fit(X_train, y_train)
 
@@ -236,6 +235,7 @@ plot_tree(
 plt.tight_layout()
 plt.savefig("decision_tree_matplotlib.png", dpi=200)
 plt.show()
+
 
 
 
